@@ -3,6 +3,16 @@ Yelp Clone in Rails
 
 Building a Yelp clone in rails.
 
+V1:
+- Allows users to view restaurant listings
+- Users can add restaurants
+- Includes validations for short restaurant names and duplicate entries
+- Users can edit restaurants
+- Users can delete listings
+- Users can leave reviews and ratings for restaurants
+
+
+
 
 == README
 
