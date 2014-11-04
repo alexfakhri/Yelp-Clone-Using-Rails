@@ -8,4 +8,9 @@ context "User not signed in and on the homepage" do
 		expect(page).to have_link('Sign up')
 	end
 
+	it "Should not see 'Sign out' link" do
+		visit '/'
+		expect(page).not_to have_link('Sign out')
+	end
+
 end
