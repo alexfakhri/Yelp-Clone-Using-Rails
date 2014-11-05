@@ -23,7 +23,16 @@ describe 'restaurants' do
 end
 
 describe 'creating restaurants' do
-	
+
+	before do
+		visit '/'
+		click_link('Sign up')
+		fill_in('Email', with: 'test@test.com')
+		fill_in('Password', with: 'test1234')
+		fill_in('Password confirmation', with: 'test1234')
+		click_button('Sign up')
+	end
+
 	it 'prompts the user to fill out a form, then displays the new restaurant' do
 		visit '/restaurants'
 		click_link 'Add a restaurant'
@@ -34,7 +43,7 @@ describe 'creating restaurants' do
 	end
 
 	context 'an invalid restaurant' do
-
+		
 		it 'does not let you submit a name that is too short' do
 			visit '/restaurants'
 			click_link 'Add a restaurant'
@@ -45,24 +54,39 @@ describe 'creating restaurants' do
 		end
 	end
 
-end
-
-context 'viewing restaurants' do
-	before do
-		@kfc = Restaurant.create(name:'KFC')
-	end
-
-	it 'lets a user view a restaurant' do
+	it "should not allow users to create restaurants unless logged in" do
 		visit '/restaurants'
-		click_link 'KFC'
-		expect(page).to have_content 'KFC'
-		expect(current_path).to eq "/restaurants/#{@kfc.id}"
+		click_link "Sign out"
+		click_link "Add a restaurant"
+		expect(page).to have_content ("Log in")
 	end
+
 end
+
+	context 'viewing restaurants' do
+
+		before do
+			@kfc = Restaurant.create(name: 'KFC')
+		end
+
+		it 'lets a user view a restaurant' do
+			visit '/restaurants'
+			click_link 'KFC'
+			expect(page).to have_content 'KFC'
+			expect(current_path).to eq "/restaurants/#{@kfc.id}"
+		end
+
+	end
 
 context 'editing restaurants' do
 
 	before do
+		visit '/'
+		click_link('Sign up')
+		fill_in('Email', with: 'test@test.com')
+		fill_in('Password', with: 'test1234')
+		fill_in('Password confirmation', with: 'test1234')
+		click_button('Sign up')
 		Restaurant.create(name: 'KFC')
 	end
 
@@ -76,11 +100,19 @@ context 'editing restaurants' do
 	end
 end
 
+
 describe 'deleting restaurants' do
 
 	before do
+		visit '/'
+		click_link('Sign up')
+		fill_in('Email', with: 'test@test.com')
+		fill_in('Password', with: 'test1234')
+		fill_in('Password confirmation', with: 'test1234')
+		click_button('Sign up')
 		Restaurant.create(name: "KFC")
 	end
+
 
 	it 'removes a restaurant when a user clicks a delete link' do
 		visit '/restaurants'
