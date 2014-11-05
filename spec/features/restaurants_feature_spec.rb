@@ -87,11 +87,14 @@ context 'editing restaurants' do
 		fill_in('Password', with: 'test1234')
 		fill_in('Password confirmation', with: 'test1234')
 		click_button('Sign up')
-		Restaurant.create(name: 'KFC')
+		click_link "Add a restaurant"
+		fill_in 'Name', with: 'KFC'
+		click_button 'Create Restaurant'	
 	end
 
 	it 'lets user edit a restaurant' do
 		visit '/restaurants'
+		save_and_open_page
 		click_link 'Edit KFC'
 		fill_in 'Name', with: 'Kentucky Fried Chicken'
 		click_button 'Update Restaurant'
@@ -110,7 +113,9 @@ describe 'deleting restaurants' do
 		fill_in('Password', with: 'test1234')
 		fill_in('Password confirmation', with: 'test1234')
 		click_button('Sign up')
-		Restaurant.create(name: "KFC")
+		click_link "Add a restaurant"
+		fill_in 'Name', with: 'KFC'
+		click_button 'Create Restaurant'
 	end
 
 
@@ -123,8 +128,18 @@ describe 'deleting restaurants' do
 
 end 
 
+describe "what a user can and cant do when being logged in and out" do
 
+	# it "should only allow users to edit and delete restaurants that they created" do
+	# 	visit '/restaurants'
+	# 	click_link 'Edit KFC'
 
+	# 	fill_in 'Name', with: 'Kentucky Fried Chicken'
+	# 	click_button 'Update Restaurant'
+	# 	expect(page).to have_content 'Kentucky Fried Chicken'
+	# 	expect(current_path).to eq '/restaurants'
+	# end
+end
 
 
 
