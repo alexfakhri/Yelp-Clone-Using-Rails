@@ -14,18 +14,7 @@
 	<% end %>
 
 	<%= link_to "Review #{restaurant.name}", new_restaurant_reviews_path(restaurant) %>
-	<% if restaurant.reviews.any? %> 
-		<ul>
-				<% restaurant.reviews.each do |review| %>
-				<li>
-					<%= review.thoughts %>, <strong><%= review.rating %></strong>/5
-					</li>
-				<% end %>
-				</ul>
-				<% else %>
-				 <p>No Reviews.</p>
-				<% end %>
-
+	
 
 	<% end %>
 	<% else %>

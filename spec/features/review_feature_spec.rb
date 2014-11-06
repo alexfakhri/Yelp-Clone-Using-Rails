@@ -19,7 +19,7 @@ describe 'reviewing' do
 		visit '/restaurants'
 		expect(current_path).to eq '/restaurants'
 		Review.create(thoughts: 'So so', rating: 3, restaurant: @restaurant, user_id: 1)
-		visit '/restaurants'
+		click_link "KFC"
 		expect(page).to have_content('So so')
 	end
 
