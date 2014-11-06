@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
+  get 'endorsement/index'
+
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   # devise_scope :user do
   #   get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
   # end
 
-  
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -61,10 +63,12 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-  resources :restaurants do
-    resource :reviews
+  resources :restaurants, shallow: true do
+    resources :reviews do
+      resources :endorsements
+    end
   end
 
   root to: "restaurants#index"
-  
+
 end

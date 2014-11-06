@@ -45,4 +45,5 @@ gem 'launchy', group: :test
 gem 'devise'
 gem 'omniauth-facebook'
 gem 'cancan'
-
+gem 'poltergeist', group: :test
+gem 'database_cleaner', group: :test
