@@ -3,7 +3,7 @@
 <% if @restaurants.any? %>
 	<% @restaurants.each do |restaurant| %>
 		<h2> <%= link_to "#{restaurant.name}", restaurant_path(restaurant) %> </h2>
-
+		<%= image_tag restaurant.image.url(:thumb) %>
 		<% if can? :update, restaurant %>
 			<%= link_to "Edit #{restaurant.name}", edit_restaurant_path(restaurant) %>
 		<% end %>
