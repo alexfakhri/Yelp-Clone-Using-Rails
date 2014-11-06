@@ -32,7 +32,7 @@ describe 'reviewing' do
 		Review.create(thoughts: 'so so', rating: 3, user_id: 1, restaurant: @restaurant)
 		Review.create(thoughts: 'great', rating: 5, user_id: 2, restaurant: @restaurant)
 		visit '/restaurants'
-		expect(page).to have_content("Average rating: 4")
+		expect(page).to have_content("Average rating: ★★★★☆")
 	end
 
 end
