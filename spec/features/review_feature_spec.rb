@@ -15,6 +15,7 @@ describe 'reviewing' do
 	it 'allows users to leave a review using a form' do
 		visit '/restaurants'
 		leave_review('so so', "2")
+		click_link 'KFC'
 		expect(page).to have_content('so so')
 	end
 

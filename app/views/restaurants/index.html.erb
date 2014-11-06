@@ -13,19 +13,7 @@
 
 		<%= link_to "Review #{restaurant.name}", new_restaurant_review_path(restaurant) %>
 		<h3>Average rating: <%= star_rating(restaurant.average_rating) %></h3>
-		<% if restaurant.reviews.any? %>
-			<ul>
-				<% restaurant.reviews.each do |review| %>
-					<li>
-						<%= review.thoughts %>, <strong><%= review.rating %></strong>/5
-					<span class="endorsements_count"><%= review.endorsements.count %></span> endorsements
-					<%= link_to "Endorse review", review_endorsements_path(review), class: 'endorsements-link' %>
-				</li>
-				<% end %>
-			</ul>
-		<% else %>
-			<p>No Reviews.</p>
-		<% end %>
+
 	<% end %>
 <% else %>
 	No restaurants yet
