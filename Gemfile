@@ -48,3 +48,4 @@ gem 'cancan'
 gem 'poltergeist', group: :test
 gem 'database_cleaner', group: :test
 gem 'paperclip'
+gem 'aws-sdk'
