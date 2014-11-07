@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
+  get 'endorsement/index'
   # devise_scope :user do
   #   get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
   # end
@@ -61,9 +62,12 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-  resources :restaurants do
-    resource :reviews
+  resources :restaurants, shallow: true do
+    resources :reviews do
+      resources :endorsements
+    end
   end
+
 
   root to: "restaurants#index"
   
